@@ -1,0 +1,320 @@
+[0.293s] Invoking command in '/home/kalman/plansys2_ws/src/plansys2_data_collector': PYTEST_ADDOPTS=--tb=short --junit-xml=/home/kalman/plansys2_ws/src/plansys2_data_collector/build/plansys2_data_collector/pytest.xml --junit-prefix=plansys2_data_collector -o cache_dir=/home/kalman/plansys2_ws/src/plansys2_data_collector/build/plansys2_data_collector/.pytest_cache /usr/bin/python3 -m pytest
+[0.549s] [1m============================= test session starts ==============================[0m
+[0.549s] platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+[0.552s] cachedir: build/plansys2_data_collector/.pytest_cache
+[0.552s] rootdir: /home/kalman/plansys2_ws/src/plansys2_data_collector
+[0.552s] plugins: ament-lint-0.16.3, ament-xmllint-0.16.3, ament-copyright-0.16.3, ament-pep257-0.16.3, launch-testing-ros-0.26.4, ament-flake8-0.16.3, launch-testing-3.4.0, anyio-4.3.0, cov-3.0.0, colcon-core-0.15.2
+[0.597s] [1mcollecting ... [0m[1m
+[0.597s] collected 3 items                                                              [0m
+[0.597s] 
+[0.601s] test/test_copyright.py [33ms[0m[32m                                                 [ 33%][0m
+[0.855s] test/test_flake8.py [31mF[0m[31m                                                    [ 66%][0m
+[0.879s] test/test_pep257.py [32m.[0m[31m                                                    [100%][0m
+[0.879s] 
+[0.879s] =================================== FAILURES ===================================
+[0.879s] [31m[1m_________________________________ test_flake8 __________________________________[0m
+[0.879s] [1m[31mtest/test_flake8.py[0m:23: in test_flake8
+[0.908s]     [94massert[39;49;00m rc == [94m0[39;49;00m, \
+[0.908s] [1m[31mE   AssertionError: Found 50 code style errors / warnings:[0m
+[0.909s] [1m[31mE     ./setup.py:2:1: I100 Import statements are in the wrong order. 'from glob import glob' should be before 'import os'[0m
+[0.909s] [1m[31mE     ./setup.py:3:1: I201 Missing newline between import groups. 'from setuptools import find_packages, setup' is identified as Third Party and 'from glob import glob' is identified as Stdlib.[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:3:1: F401 'rosbags.rosbag2.Reader' imported but unused[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:4:1: I100 Import statements are in the wrong order. 'from rosbags.highlevel import AnyReader' should be before 'from rosbags.rosbag2 import Reader'[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:5:1: F401 'plansys2_msgs.msg.ActionExecutionDataCollection' imported but unused[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:5:1: I100 Import statements are in the wrong order. 'from plansys2_msgs.msg import ActionExecutionDataCollection' should be before 'from rosbags.highlevel import AnyReader'[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:6:1: I100 Import statements are in the wrong order. 'import pandas' should be before 'from plansys2_msgs.msg import ActionExecutionDataCollection'[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:7:1: I100 Import statements are in the wrong order. 'import sys' should be before 'import pandas' and in a different group.[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:7:1: I201 Missing newline between import groups. 'import sys' is identified as Stdlib and 'import pandas' is identified as Third Party.[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:8:1: I100 Import statements are in the wrong order. 'from pathlib import Path' should be before 'import sys'[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:9:1: F401 'rosidl_runtime_py.convert.get_message_slot_types' imported but unused[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:9:1: F401 'rosidl_runtime_py.convert.message_to_csv' imported but unused[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:9:1: I201 Missing newline between import groups. 'from rosidl_runtime_py.convert import get_message_slot_types, message_to_csv' is identified as Third Party and 'from pathlib import Path' is identified as Stdlib.[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:11:1: E302 expected 2 blank lines, found 1[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:22:100: E501 line too long (100 > 99 characters)[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:29:1: W293 blank line contains whitespace[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:31:100: E501 line too long (107 > 99 characters)[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:57:1: E302 expected 2 blank lines, found 1[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:59:5: F841 local variable 'node' is assigned to but never used[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/csv_generator.py:65:1: E305 expected 2 blank lines after class or function definition, found 1[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:3:1: I100 Import statements are in the wrong order. 'import pandas' should be before 'from rclpy.node import Node'[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:5:1: I100 Import statements are in the wrong order. 'import matplotlib.pyplot' should be before 'import seaborn'[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:6:1: I100 Import statements are in the wrong order. 'import sys' should be before 'import matplotlib.pyplot' and in a different group.[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:6:1: I201 Missing newline between import groups. 'import sys' is identified as Stdlib and 'import matplotlib.pyplot' is identified as Third Party.[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:7:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import sys' is identified as Stdlib.[0m
+[0.909s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:9:1: E302 expected 2 blank lines, found 1[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:19:100: E501 line too long (102 > 99 characters)[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:29:29: Q000 Double quotes found but single quotes preferred[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:42:100: Q000 Double quotes found but single quotes preferred[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:42:100: E501 line too long (103 > 99 characters)[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:43:100: E501 line too long (105 > 99 characters)[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:43:102: Q000 Double quotes found but single quotes preferred[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:44:100: E501 line too long (107 > 99 characters)[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:44:104: Q000 Double quotes found but single quotes preferred[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:45:100: E501 line too long (105 > 99 characters)[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:45:102: Q000 Double quotes found but single quotes preferred[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:50:100: E501 line too long (104 > 99 characters)[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:53:100: E501 line too long (105 > 99 characters)[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:56:100: E501 line too long (108 > 99 characters)[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:59:100: E501 line too long (102 > 99 characters)[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:65:28: Q000 Double quotes found but single quotes preferred[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:71:1: E302 expected 2 blank lines, found 1[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:73:5: F841 local variable 'node' is assigned to but never used[0m
+[0.910s] [1m[31mE     ./plansys2_data_collector/plot_generator.py:79:1: E305 expected 2 blank lines after class or function definition, found 1[0m
+[0.910s] [1m[31mE     ./launch/plot.launch.py:49:1: W293 blank line contains whitespace[0m
+[0.910s] [1m[31mE     ./launch/plot.launch.py:58:14: W292 no newline at end of file[0m
+[0.910s] [1m[31mE     ./launch/generate_csv.launch.py:28:100: E501 line too long (101 > 99 characters)[0m
+[0.910s] [1m[31mE     ./launch/generate_csv.launch.py:34:1: W293 blank line contains whitespace[0m
+[0.910s] [1m[31mE     ./launch/generate_csv.launch.py:44:1: W293 blank line contains whitespace[0m
+[0.910s] [1m[31mE     ./launch/generate_csv.launch.py:52:14: W292 no newline at end of file[0m
+[0.910s] [1m[31mE   assert 1 == 0[0m
+[0.910s] ----------------------------- Captured stdout call -----------------------------
+[0.910s] 
+[0.910s] ./setup.py:2:1: I100 Import statements are in the wrong order. 'from glob import glob' should be before 'import os'
+[0.910s] from glob import glob
+[0.911s] ^
+[0.911s] 
+[0.911s] ./setup.py:3:1: I201 Missing newline between import groups. 'from setuptools import find_packages, setup' is identified as Third Party and 'from glob import glob' is identified as Stdlib.
+[0.911s] from setuptools import find_packages, setup
+[0.911s] ^
+[0.911s] 
+[0.911s] ./plansys2_data_collector/csv_generator.py:3:1: F401 'rosbags.rosbag2.Reader' imported but unused
+[0.911s] from rosbags.rosbag2 import Reader
+[0.911s] ^
+[0.911s] 
+[0.911s] ./plansys2_data_collector/csv_generator.py:4:1: I100 Import statements are in the wrong order. 'from rosbags.highlevel import AnyReader' should be before 'from rosbags.rosbag2 import Reader'
+[0.911s] from rosbags.highlevel import AnyReader
+[0.911s] ^
+[0.911s] 
+[0.911s] ./plansys2_data_collector/csv_generator.py:5:1: F401 'plansys2_msgs.msg.ActionExecutionDataCollection' imported but unused
+[0.911s] from plansys2_msgs.msg import ActionExecutionDataCollection
+[0.911s] ^
+[0.911s] 
+[0.911s] ./plansys2_data_collector/csv_generator.py:5:1: I100 Import statements are in the wrong order. 'from plansys2_msgs.msg import ActionExecutionDataCollection' should be before 'from rosbags.highlevel import AnyReader'
+[0.911s] from plansys2_msgs.msg import ActionExecutionDataCollection
+[0.911s] ^
+[0.911s] 
+[0.911s] ./plansys2_data_collector/csv_generator.py:6:1: I100 Import statements are in the wrong order. 'import pandas' should be before 'from plansys2_msgs.msg import ActionExecutionDataCollection'
+[0.911s] import pandas as pd
+[0.911s] ^
+[0.911s] 
+[0.911s] ./plansys2_data_collector/csv_generator.py:7:1: I100 Import statements are in the wrong order. 'import sys' should be before 'import pandas' and in a different group.
+[0.911s] import sys
+[0.912s] ^
+[0.912s] 
+[0.912s] ./plansys2_data_collector/csv_generator.py:7:1: I201 Missing newline between import groups. 'import sys' is identified as Stdlib and 'import pandas' is identified as Third Party.
+[0.912s] import sys
+[0.912s] ^
+[0.912s] 
+[0.912s] ./plansys2_data_collector/csv_generator.py:8:1: I100 Import statements are in the wrong order. 'from pathlib import Path' should be before 'import sys'
+[0.912s] from pathlib import Path
+[0.912s] ^
+[0.912s] 
+[0.912s] ./plansys2_data_collector/csv_generator.py:9:1: F401 'rosidl_runtime_py.convert.get_message_slot_types' imported but unused
+[0.912s] from rosidl_runtime_py.convert import get_message_slot_types, message_to_csv
+[0.912s] ^
+[0.912s] 
+[0.912s] ./plansys2_data_collector/csv_generator.py:9:1: F401 'rosidl_runtime_py.convert.message_to_csv' imported but unused
+[0.912s] from rosidl_runtime_py.convert import get_message_slot_types, message_to_csv
+[0.912s] ^
+[0.912s] 
+[0.912s] ./plansys2_data_collector/csv_generator.py:9:1: I201 Missing newline between import groups. 'from rosidl_runtime_py.convert import get_message_slot_types, message_to_csv' is identified as Third Party and 'from pathlib import Path' is identified as Stdlib.
+[0.912s] from rosidl_runtime_py.convert import get_message_slot_types, message_to_csv
+[0.912s] ^
+[0.912s] 
+[0.912s] ./plansys2_data_collector/csv_generator.py:11:1: E302 expected 2 blank lines, found 1
+[0.912s] class BagToCsvNode(Node):
+[0.912s] ^
+[0.912s] 
+[0.912s] ./plansys2_data_collector/csv_generator.py:22:100: E501 line too long (100 > 99 characters)
+[0.912s]             self.get_logger().error('Both bag_file_path and csv_file_path parameters are required.')
+[0.912s]                                                                                                    ^
+[0.913s] 
+[0.913s] ./plansys2_data_collector/csv_generator.py:29:1: W293 blank line contains whitespace
+[0.913s]         
+[0.913s] ^
+[0.913s] 
+[0.913s] ./plansys2_data_collector/csv_generator.py:31:100: E501 line too long (107 > 99 characters)
+[0.913s]             connections = [x for x in reader.connections if x.topic == '/action_execution_data_collection']
+[0.913s]                                                                                                    ^
+[0.913s] 
+[0.913s] ./plansys2_data_collector/csv_generator.py:57:1: E302 expected 2 blank lines, found 1
+[0.913s] def main(args=None):
+[0.913s] ^
+[0.913s] 
+[0.913s] ./plansys2_data_collector/csv_generator.py:59:5: F841 local variable 'node' is assigned to but never used
+[0.913s]     node = BagToCsvNode()
+[0.913s]     ^
+[0.913s] 
+[0.913s] ./plansys2_data_collector/csv_generator.py:65:1: E305 expected 2 blank lines after class or function definition, found 1
+[0.913s] if __name__ == '__main__':
+[0.913s] ^
+[0.913s] 
+[0.913s] ./plansys2_data_collector/plot_generator.py:3:1: I100 Import statements are in the wrong order. 'import pandas' should be before 'from rclpy.node import Node'
+[0.913s] import pandas as pd
+[0.913s] ^
+[0.913s] 
+[0.913s] ./plansys2_data_collector/plot_generator.py:5:1: I100 Import statements are in the wrong order. 'import matplotlib.pyplot' should be before 'import seaborn'
+[0.914s] import matplotlib.pyplot as plt
+[0.914s] ^
+[0.914s] 
+[0.914s] ./plansys2_data_collector/plot_generator.py:6:1: I100 Import statements are in the wrong order. 'import sys' should be before 'import matplotlib.pyplot' and in a different group.
+[0.914s] import sys
+[0.914s] ^
+[0.914s] 
+[0.914s] ./plansys2_data_collector/plot_generator.py:6:1: I201 Missing newline between import groups. 'import sys' is identified as Stdlib and 'import matplotlib.pyplot' is identified as Third Party.
+[0.914s] import sys
+[0.914s] ^
+[0.914s] 
+[0.914s] ./plansys2_data_collector/plot_generator.py:7:1: I201 Missing newline between import groups. 'import numpy' is identified as Third Party and 'import sys' is identified as Stdlib.
+[0.914s] import numpy as np
+[0.914s] ^
+[0.914s] 
+[0.914s] ./plansys2_data_collector/plot_generator.py:9:1: E302 expected 2 blank lines, found 1
+[0.914s] class CsvToGraphNode(Node):
+[0.914s] ^
+[0.914s] 
+[0.914s] ./plansys2_data_collector/plot_generator.py:19:100: E501 line too long (102 > 99 characters)
+[0.914s]         plot_uncertainties = self.get_parameter('plot_uncertainties').get_parameter_value().bool_value
+[0.914s]                                                                                                    ^
+[0.914s] 
+[0.914s] ./plansys2_data_collector/plot_generator.py:29:29: Q000 Double quotes found but single quotes preferred
+[0.914s]         sns.set_theme(style="whitegrid")
+[0.915s]                             ^
+[0.915s] 
+[0.915s] ./plansys2_data_collector/plot_generator.py:42:100: Q000 Double quotes found but single quotes preferred
+[0.915s]                 sns.lineplot(data=arg_df, x=x_axis, y='nominal_cost', label='Nominal Cost', marker="o")
+[0.915s]                                                                                                    ^
+[0.915s] 
+[0.915s] ./plansys2_data_collector/plot_generator.py:42:100: E501 line too long (103 > 99 characters)
+[0.915s]                 sns.lineplot(data=arg_df, x=x_axis, y='nominal_cost', label='Nominal Cost', marker="o")
+[0.915s]                                                                                                    ^
+[0.915s] 
+[0.915s] ./plansys2_data_collector/plot_generator.py:43:100: E501 line too long (105 > 99 characters)
+[0.915s]                 sns.lineplot(data=arg_df, x=x_axis, y='measured_cost', label='Measured Cost', marker="o")
+[0.915s]                                                                                                    ^
+[0.915s] 
+[0.915s] ./plansys2_data_collector/plot_generator.py:43:102: Q000 Double quotes found but single quotes preferred
+[0.915s]                 sns.lineplot(data=arg_df, x=x_axis, y='measured_cost', label='Measured Cost', marker="o")
+[0.915s]                                                                                                      ^
+[0.915s] 
+[0.915s] ./plansys2_data_collector/plot_generator.py:44:100: E501 line too long (107 > 99 characters)
+[0.915s]                 sns.lineplot(data=arg_df, x=x_axis, y='estimated_cost', label='Estimated Cost', marker="o")
+[0.915s]                                                                                                    ^
+[0.915s] 
+[0.915s] ./plansys2_data_collector/plot_generator.py:44:104: Q000 Double quotes found but single quotes preferred
+[0.915s]                 sns.lineplot(data=arg_df, x=x_axis, y='estimated_cost', label='Estimated Cost', marker="o")
+[0.915s]                                                                                                        ^
+[0.915s] 
+[0.915s] ./plansys2_data_collector/plot_generator.py:45:100: E501 line too long (105 > 99 characters)
+[0.915s]                 sns.lineplot(data=arg_df, x=x_axis, y='residual_cost', label='Residual Cost', marker="o")
+[0.916s]                                                                                                    ^
+[0.916s] 
+[0.916s] ./plansys2_data_collector/plot_generator.py:45:102: Q000 Double quotes found but single quotes preferred
+[0.916s]                 sns.lineplot(data=arg_df, x=x_axis, y='residual_cost', label='Residual Cost', marker="o")
+[0.916s]                                                                                                      ^
+[0.916s] 
+[0.916s] ./plansys2_data_collector/plot_generator.py:50:100: E501 line too long (104 > 99 characters)
+[0.916s]                                      arg_df['nominal_cost'] + arg_df['nominal_cost_std_dev'], alpha=0.3)
+[0.916s]                                                                                                    ^
+[0.916s] 
+[0.916s] ./plansys2_data_collector/plot_generator.py:53:100: E501 line too long (105 > 99 characters)
+[0.916s]                                      arg_df['measured_cost'] + arg_df['mesured_cost_std_dev'], alpha=0.3)
+[0.916s]                                                                                                    ^
+[0.916s] 
+[0.916s] ./plansys2_data_collector/plot_generator.py:56:100: E501 line too long (108 > 99 characters)
+[0.916s]                                      arg_df['estimated_cost'] + arg_df['estimated_cost_std_dev'], alpha=0.3)
+[0.916s]                                                                                                    ^
+[0.916s] 
+[0.916s] ./plansys2_data_collector/plot_generator.py:59:100: E501 line too long (102 > 99 characters)
+[0.916s]                                      arg_df['residual_cost'] + arg_df['residual_cost_std'], alpha=0.3)
+[0.916s]                                                                                                    ^
+[0.916s] 
+[0.917s] ./plansys2_data_collector/plot_generator.py:65:28: Q000 Double quotes found but single quotes preferred
+[0.917s]                 plt_path = f"{output_dir}/node_{node_id}_arguments_{arg}.png"
+[0.917s]                            ^
+[0.917s] 
+[0.917s] ./plansys2_data_collector/plot_generator.py:71:1: E302 expected 2 blank lines, found 1
+[0.917s] def main(args=None):
+[0.917s] ^
+[0.917s] 
+[0.917s] ./plansys2_data_collector/plot_generator.py:73:5: F841 local variable 'node' is assigned to but never used
+[0.917s]     node = CsvToGraphNode()
+[0.917s]     ^
+[0.917s] 
+[0.917s] ./plansys2_data_collector/plot_generator.py:79:1: E305 expected 2 blank lines after class or function definition, found 1
+[0.917s] if __name__ == '__main__':
+[0.917s] ^
+[0.917s] 
+[0.917s] ./launch/plot.launch.py:49:1: W293 blank line contains whitespace
+[0.917s]     
+[0.917s] ^
+[0.917s] 
+[0.917s] ./launch/plot.launch.py:58:14: W292 no newline at end of file
+[0.917s]     return ld             ^
+[0.917s] 
+[0.918s] ./launch/generate_csv.launch.py:28:100: E501 line too long (101 > 99 characters)
+[0.918s]         default_value=pkg_dir + '/data/executions_data_first_test/executions_data_first_test_0.mcap',
+[0.918s]                                                                                                    ^
+[0.918s] 
+[0.918s] ./launch/generate_csv.launch.py:34:1: W293 blank line contains whitespace
+[0.918s]     
+[0.918s] ^
+[0.918s] 
+[0.918s] ./launch/generate_csv.launch.py:44:1: W293 blank line contains whitespace
+[0.918s]     
+[0.918s] ^
+[0.918s] 
+[0.918s] ./launch/generate_csv.launch.py:52:14: W292 no newline at end of file
+[0.918s]     return ld             ^
+[0.918s] 
+[0.918s] 4     E302 expected 2 blank lines, found 1
+[0.918s] 2     E305 expected 2 blank lines after class or function definition, found 1
+[0.918s] 12    E501 line too long (101 > 99 characters)
+[0.918s] 4     F401 'rosbags.rosbag2.Reader' imported but unused
+[0.918s] 2     F841 local variable 'node' is assigned to but never used
+[0.918s] 9     I100 Import statements are in the wrong order. 'from rosbags.highlevel import AnyReader' should be before 'from rosbags.rosbag2 import Reader'
+[0.918s] 5     I201 Missing newline between import groups. 'import sys' is identified as Stdlib and 'import pandas' is identified as Third Party.
+[0.919s] 6     Q000 Double quotes found but single quotes preferred
+[0.919s] 2     W292 no newline at end of file
+[0.919s] 4     W293 blank line contains whitespace
+[0.919s] 
+[0.919s] 9 files checked
+[0.919s] 50 errors
+[0.919s] 
+[0.919s] 'E'-type errors: 18
+[0.919s] 'F'-type errors: 6
+[0.919s] 'I'-type errors: 14
+[0.919s] 'Q'-type errors: 6
+[0.919s] 'W'-type errors: 6
+[0.919s] 
+[0.919s] Checked files:
+[0.919s] 
+[0.919s] * ./setup.py
+[0.919s] * ./plansys2_data_collector/__init__.py
+[0.919s] * ./plansys2_data_collector/csv_generator.py
+[0.919s] * ./plansys2_data_collector/plot_generator.py
+[0.919s] * ./test/test_pep257.py
+[0.919s] * ./test/test_copyright.py
+[0.919s] * ./test/test_flake8.py
+[0.919s] * ./launch/plot.launch.py
+[0.919s] * ./launch/generate_csv.launch.py
+[0.919s] ----------------------------- Captured stderr call -----------------------------
+[0.919s] option --max-complexity: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[0.919s] option --application-import-names: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[0.919s] option --application-package-names: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[0.919s] option --import-order-style: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[0.920s] option --quotes: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[0.920s] option --inline-quotes: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[0.920s] option --multiline-quotes: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[0.920s] option --docstring-quotes: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[0.920s] - generated xml file: /home/kalman/plansys2_ws/src/plansys2_data_collector/build/plansys2_data_collector/pytest.xml -
+[0.920s] [33m=============================== warnings summary ===============================[0m
+[0.920s] test/test_flake8.py::test_flake8
+[0.920s] test/test_flake8.py::test_flake8
+[0.920s]   Warning: SelectableGroups dict interface is deprecated. Use select.
+[0.920s] 
+[0.920s] -- Docs: https://docs.pytest.org/en/stable/warnings.html
+[0.920s] =========================== short test summary info ============================
+[0.920s] FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 50 code style...
+[0.920s] [31m============== [31m[1m1 failed[0m, [32m1 passed[0m, [33m1 skipped[0m, [33m2 warnings[0m[31m in 0.36s[0m[31m ==============[0m
+[0.986s] Invoked command in '/home/kalman/plansys2_ws/src/plansys2_data_collector' returned '1': PYTEST_ADDOPTS=--tb=short --junit-xml=/home/kalman/plansys2_ws/src/plansys2_data_collector/build/plansys2_data_collector/pytest.xml --junit-prefix=plansys2_data_collector -o cache_dir=/home/kalman/plansys2_ws/src/plansys2_data_collector/build/plansys2_data_collector/.pytest_cache /usr/bin/python3 -m pytest
