@@ -1,0 +1,15 @@
+csv_generator_node:
+  ros__parameters:
+    packages_to_register: # All the messages are registered
+      - plansys2_msgs
+
+    plansys2_msgs: msg
+    
+  # messages_to_register: 
+  #   - ActionExecution
+  #   - ActionCost
+  #   - ActionExecutionDataCollection
+  #   - PlanExecutionDataCollection
+
+# ActionExecution:
+#   package: plansys2_msgs

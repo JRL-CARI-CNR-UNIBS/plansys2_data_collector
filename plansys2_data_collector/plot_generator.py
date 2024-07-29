@@ -26,6 +26,9 @@ class CsvToGraphNode(Node):
 
     def plot_data_from_csv(self, input_csv_path, output_dir, plot_uncertainties):
         df = pd.read_csv(input_csv_path)
+        # Add a column that is given by the difference between t_end and t_start columns
+        df['duration'] = df['t_end'] - df['t_start']
+
         sns.set_theme(style="whitegrid")
         print(df.head())
         node_ids = df['node_id'].unique()
@@ -43,6 +46,8 @@ class CsvToGraphNode(Node):
                 sns.lineplot(data=arg_df, x=x_axis, y='measured_cost', label='Measured Cost', marker="o")
                 sns.lineplot(data=arg_df, x=x_axis, y='estimated_cost', label='Estimated Cost', marker="o")
                 sns.lineplot(data=arg_df, x=x_axis, y='residual_cost', label='Residual Cost', marker="o")
+                sns.lineplot(data=arg_df, x=x_axis, y='residual_cost', label='Residual Cost', marker="o")
+                sns.lineplot(data=arg_df, x=x_axis, y='duration', label='Measured ', marker="o")
 
                 if plot_uncertainties:
                     plt.fill_between(x_axis,

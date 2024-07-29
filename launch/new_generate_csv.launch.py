@@ -31,15 +31,20 @@ def generate_launch_description():
         'output_csv_path',
         default_value=pkg_dir + '/data/output.csv',
         description='Full path to the output CSV file')
+    declare_config_file_path_cmd = DeclareLaunchArgument(
+        'config_file_path',
+        default_value=pkg_dir + '/config/config.yaml',
+        description='Config file path to register custom msgs')
     
     generate_csv_cmd = Node(
         package='plansys2_data_collector',
-        executable='csv_generator',
-        name='csv_generator',
+        executable='csv_generator_test',
+        name='csv_generator_node',
         output='screen',
         parameters=[
             {'bag_file_path': LaunchConfiguration('bag_file_path')},
-            {'output_csv_path': LaunchConfiguration('output_csv_path')}
+            {'output_csv_path': LaunchConfiguration('output_csv_path')},
+            LaunchConfiguration('config_file_path')
         ])
     
     # Create the launch description and populate
@@ -47,6 +52,7 @@ def generate_launch_description():
 
     ld.add_action(declare_bag_file_path_cmd)
     ld.add_action(declare_csv_output_path_cmd)
+    ld.add_action(declare_config_file_path_cmd)
 
     ld.add_action(generate_csv_cmd)
     return ld

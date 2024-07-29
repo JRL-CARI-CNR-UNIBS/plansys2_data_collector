@@ -13,6 +13,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
+        (os.path.join('share', package_name, 'config'), glob('config/*.yaml')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -25,6 +26,7 @@ setup(
         'console_scripts': [
             'csv_generator = plansys2_data_collector.csv_generator:main',
             'plot_generator = plansys2_data_collector.plot_generator:main',
+            'csv_generator_test = plansys2_data_collector.csv_generator_test:main',
         ],
     },
 )

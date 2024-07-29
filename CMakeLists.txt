@@ -23,7 +23,7 @@ install(PROGRAMS
 
 # Install launch files
 install(DIRECTORY
-  launch data
+  launch data config
   DESTINATION share/${PROJECT_NAME}
 )
 
