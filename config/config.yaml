@@ -2,9 +2,20 @@ csv_generator_node:
   ros__parameters:
     packages_to_register: # All the messages are registered
       - plansys2_msgs
-
-    plansys2_msgs: msg
+    extractors_to_import:
+      - action_executor_info_extractor
+      - plan_executor_info_extractor
     
+    plansys2_msgs: msg
+
+    action_executor_info_extractor:
+      package_name: "plansys2_data_collector"
+      module_name: "action_executor_info_extractor"
+      class_name: "ActionExecutorInfoExtractor"
+    plan_executor_info_extractor:
+      package_name: "plansys2_data_collector"
+      module_name: "plan_executor_info_extractor"
+      class_name: "PlanExecutorInfoExtractor"  
   # messages_to_register: 
   #   - ActionExecution
   #   - ActionCost
