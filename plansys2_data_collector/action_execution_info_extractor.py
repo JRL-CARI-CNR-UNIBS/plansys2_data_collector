@@ -1,8 +1,8 @@
-from info_extractor_base import InfoExtractor
+from bag_to_csv.info_extractor import InfoExtractor
 
 class ActionExecutionInfoExtractor(InfoExtractor):
     def __init__(self):
-        super().__init__("ActionExecutionInfoExtractor")
+        super().__init__("plansys2_msgs/msg/ActionExecutionDataCollection")
 
     def extract_info_from_msg(self, msg, msg_type):
         self._check_msg_type(msg_type)
