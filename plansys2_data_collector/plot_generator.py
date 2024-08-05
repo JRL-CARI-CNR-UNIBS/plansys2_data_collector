@@ -53,9 +53,9 @@ class CsvToGraphNode(Node):
                     plt.fill_between(x_axis,
                                      arg_df['nominal_cost'] - arg_df['nominal_cost_std_dev'],
                                      arg_df['nominal_cost'] + arg_df['nominal_cost_std_dev'], alpha=0.3)
-                    plt.fill_between(x_axis,
-                                     arg_df['measured_cost'] - arg_df['mesured_cost_std_dev'],
-                                     arg_df['measured_cost'] + arg_df['mesured_cost_std_dev'], alpha=0.3)
+                    # plt.fill_between(x_axis,
+                    #                  arg_df['measured_cost'] - arg_df['mesured_cost_std_dev'],
+                    #                  arg_df['measured_cost'] + arg_df['mesured_cost_std_dev'], alpha=0.3)
                     plt.fill_between(x_axis,
                                      arg_df['estimated_cost'] - arg_df['estimated_cost_std'],
                                      arg_df['estimated_cost'] + arg_df['estimated_cost_std'], alpha=0.3)
@@ -71,7 +71,7 @@ class CsvToGraphNode(Node):
                 plt.show()
                 # plt.savefig(plt_path)
                 # plt.close()
-                self.get_logger().info(f'Plot saved at {plt_path}')
+                # self.get_logger().info(f'Plot saved at {plt_path}')
 
 def main(args=None):
     rclpy.init(args=args)

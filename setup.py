@@ -25,6 +25,7 @@ setup(
     entry_points={
         'console_scripts': [
             'plot_generator = plansys2_data_collector.plot_generator:main',
+            'plan_plot_generator = plansys2_data_collector.plan_plot_generator:main',
         ],
     },
 )
