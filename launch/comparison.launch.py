@@ -23,30 +23,30 @@ from launch_ros.actions import Node
 def generate_launch_description():
     pkg_dir = get_package_share_directory('plansys2_data_collector')
 
-    declare_bag_file_path_cmd = DeclareLaunchArgument(
-        'bag_file_path',
-        default_value=pkg_dir + '/data/executions_data_first_test/executions_data_first_test_0.mcap',
-        description='Full path to the bag file to analyze')
     declare_csv_output_path_cmd = DeclareLaunchArgument(
-        'output_csv_path',
-        default_value=pkg_dir + '/data/output.csv',
-        description='Full path to the output CSV file')
-    
-    generate_csv_cmd = Node(
+        'main_path',
+        default_value=pkg_dir + '/results/',
+        description='Main path of the folder containing subfolders with the exported data')
+    declare_config_file_path_cmd = DeclareLaunchArgument(
+        'comparison_config_file_path',
+        default_value=pkg_dir + '/config/comparison_config.yaml',
+        description='Config file path to register custom msgs')
+
+    comparison_plot_cmd = Node(
         package='plansys2_data_collector',
-        executable='csv_generator',
-        name='csv_generator',
+        executable='plan_plot_comparison_generator',
+        name='plan_plot_comparison_generator',
         output='screen',
         parameters=[
-            {'bag_file_path': LaunchConfiguration('bag_file_path')},
-            {'output_csv_path': LaunchConfiguration('output_csv_path')}
+            {'main_path': LaunchConfiguration('main_path')},
+            LaunchConfiguration('comparison_config_file_path')
         ])
     
     # Create the launch description and populate
     ld = LaunchDescription()
 
-    ld.add_action(declare_bag_file_path_cmd)
     ld.add_action(declare_csv_output_path_cmd)
+    ld.add_action(declare_config_file_path_cmd)
+    ld.add_action(comparison_plot_cmd)
 
-    ld.add_action(generate_csv_cmd)
     return ld

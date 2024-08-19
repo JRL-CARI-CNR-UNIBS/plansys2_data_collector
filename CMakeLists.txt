@@ -16,14 +16,17 @@ ament_python_install_package(
   plansys2_data_collector)
 
 install(PROGRAMS
-  plansys2_data_collector/csv_generator.py
   plansys2_data_collector/plot_generator.py
+  plansys2_data_collector/plan_plot_generator.py
+  plansys2_data_collector/action_execution_info_collector.py
+  plansys2_data_collector/plan_execution_info_collector.py
+  plansys2_data_collector/plan_plot_comparison_generator.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
 # Install launch files
 install(DIRECTORY
-  launch data config
+  launch data config results
   DESTINATION share/${PROJECT_NAME}
 )
 
