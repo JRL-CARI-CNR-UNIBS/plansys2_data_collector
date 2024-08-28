@@ -35,7 +35,10 @@ def generate_launch_description():
         'plot_uncertainties',
         default_value='false',
         description='Bool to plot uncertainties')
-
+    declare_config_file_path_cmd = DeclareLaunchArgument(
+        'config_file_path',
+        default_value=pkg_dir + '/config/config.yaml',
+        description='Config file path to register custom msgs')
     generate_csv_cmd = Node(
         package='plansys2_data_collector',
         executable='plot_generator',
