@@ -1,7 +1,7 @@
 plan_plot_comparison_generator:
   ros__parameters:
     plans_to_compare: 
-      - "LPG"
-      - "TAMER"
       - "POPF"
+      - "TAMER"
+      - "LPG"
       - "OPTIC"
