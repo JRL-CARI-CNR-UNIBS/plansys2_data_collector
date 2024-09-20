@@ -3,6 +3,7 @@ from bag_to_csv.info_extractor import InfoExtractor
 class PlanExecutionInfoExtractor(InfoExtractor):
     def __init__(self):
         super().__init__("plansys2_msgs/msg/PlanExecutionDataCollection")
+        self.plans = []
 
     def extract_info_from_msg(self, msg, msg_type):
         self._check_msg_type(msg_type)
@@ -19,6 +20,7 @@ class PlanExecutionInfoExtractor(InfoExtractor):
         item_t_end = [item['time']+item['duration'] for item in plan_items]
         
         plan_nominal_duration = max(item_t_end)
+        # start-end of plan item 
         plan_start = msg.t_start.sec + msg.t_start.nanosec * 1e-9  
         plan_end = msg.t_end.sec + msg.t_end.nanosec * 1e-9
         plan_duration = plan_end - plan_start
@@ -28,46 +30,39 @@ class PlanExecutionInfoExtractor(InfoExtractor):
             'plan_duration': plan_duration,
         }
     
-# from bag_to_csv.info_extractor import InfoExtractor
-
-# class PlanExecutionInfoExtractor(InfoExtractor):
-#     def __init__(self):
-#         super().__init__("plansys2_msgs/msg/PlanExecutionDataCollection")
-
-#     def extract_info_from_msg(self, msg, msg_type):
-#         self._check_msg_type(msg_type)
-#         actions = []
-#         for action in msg.action_execution_status:
-#             print(action.status)
-#             print(action.start_stamp.sec + action.start_stamp.nanosec * 1e-9)
-#             print(action.status_stamp.sec + action.status_stamp.nanosec * 1e-9)
-#             print(action.duration)
-#             actions.append({
-#                 'action': action.action,
-#                 'action_full_name': action.action_full_name,
-#                 # 'status': action.status,
-#                 'start': action.start_stamp.sec + action.start_stamp.nanosec * 1e-9,
-#                 'end': action.status_stamp.sec + action.status_stamp.nanosec * 1e-9,
-#                 'duration': action.status_stamp.sec + action.status_stamp.nanosec * 1e-9 - action.start_stamp.sec - action.start_stamp.nanosec * 1e-9
-#             })
+    def analyze_data(self, msg, msg_type):
+        self._check_msg_type(msg_type)
         
-        
-#         plan = msg.plan
-#         plan_items = []
+        plan = msg.plan
+        # plan_items = []
 
-#         for item in plan.items:
-#             plan_items.append({
-#                 'time': item.time,
-#                 'action': item.action,
-#                 'duration': item. duration
-#             })
-#         item_t_end = [item['time']+item['duration'] for item in plan_items]
+        for item in plan.items:
+            print(f'[{item.time}]: {item.action}, ({item.duration})')
+            # plan_items.append({
+            #     'time': item.time,
+            #     'action': item.action,
+            #     'duration': item. duration
+            # })
+            # print(sum([plan_item == item for plan_item in old_plan.items for old_plan in self.plans]))
         
-#         plan_nominal_duration = max(item_t_end)
-#         plan_start = msg.t_start.sec + msg.t_start.nanosec * 1e-9  
-#         plan_end = msg.t_end.sec + msg.t_end.nanosec * 1e-9
-#         plan_duration = plan_end - plan_start
-#         return {
-#             'nominal_duration': plan_nominal_duration,
-#             'plan_duration': plan_duration,
-#         }
+        shared_actions = []
+        for old_plan in self.plans:
+            counts = 0
+            for plan_item in old_plan.items:
+                for item in plan.items:
+                    if plan_item.action == item.action:
+                        counts += 1
+            shared_actions.append(counts)
+        self.plans.append(plan)
+
+        print(f"N action: {len(plan.items)}")
+        print(f"N robot 1 action: {len([item for item in plan.items if 'robot1' in item.action])}")
+        print(f"N robot 2 action: {len([item for item in plan.items if 'robot2' in item.action])}")
+        print(f"Robot1 activity time: {sum([item.duration for item in plan.items if 'robot1' in item.action])}")
+        print(f"Robot2 activity time: {sum([item.duration for item in plan.items if 'robot2' in item.action])}")
+        print(f"Shared actions: {shared_actions}")
+        print(f"Start: {msg.t_start.sec + msg.t_start.nanosec * 1e-9}")
+        print(f"End: {msg.t_end.sec + msg.t_end.nanosec * 1e-9}")
+        print("-----------------")
+
+            
