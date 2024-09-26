@@ -37,7 +37,7 @@ class PlanComparisonPlotGeneratorNode(Node):
         if combined_df.empty:
             self.get_logger().error('No data to plot')
             return
-
+        
         # Plot with Seaborn
         # sns.set_theme()
         # sns.lineplot(data=combined_df, x=combined_df.index, y='nominal_duration', hue='planner')
