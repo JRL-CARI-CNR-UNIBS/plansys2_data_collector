@@ -5,3 +5,10 @@ plan_plot_comparison_generator:
       - "TAMER"
       - "LPG"
       - "OPTIC"
+expectation_vs_reality_plot:
+  ros__parameters:
+    plans_to_compare: 
+      - "POPF"
+      - "TAMER"
+      - "LPG"
+      - "OPTIC"

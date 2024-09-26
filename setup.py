@@ -43,6 +43,7 @@ setup(
             'plot_generator = plansys2_data_collector.plot_generator:main',
             'plan_plot_generator = plansys2_data_collector.plan_plot_generator:main',
             'plan_plot_comparison_generator = plansys2_data_collector.plan_plot_comparison_generator:main',
+            'expectation_vs_reality_plot = plansys2_data_collector.expectation_vs_reality_plot:main',
         ],
     },
 )

@@ -6,10 +6,11 @@ import matplotlib.pyplot as plt
 import sys
 import plotly.express as px
 import plotly.graph_objects as go
+import matplotlib.ticker as mtick
 
 class PlanComparisonPlotGeneratorNode(Node):
     def __init__(self):
-        super().__init__('plan_plot_comparison_generator_node')
+        super().__init__('expectation_vs_reality_plot_node')
 
         self.declare_parameter('main_path', '')
         self.declare_parameter('plans_to_compare', [''])
@@ -83,7 +84,7 @@ class PlanComparisonPlotGeneratorNode(Node):
 
         plt.legend(handles=handles, labels=labels, title='Planner')
 
-        # plt.show()
+        plt.show()
 
         num_plans = len(plans_to_compare)
         num_rows = (num_plans + 1) // 2  # Calcola il numero di righe necessario
@@ -97,15 +98,17 @@ class PlanComparisonPlotGeneratorNode(Node):
         for i, plan_execution in enumerate(plans_to_compare):
             df_filtered = combined_df[combined_df['planner'] == plan_execution]
             
-            axes[i].plot(df_filtered.index, df_filtered['nominal_duration'], label='Estimated', color=planner_colors[plan_execution])
-            axes[i].plot(df_filtered.index, df_filtered['plan_duration'], linestyle='--', label='Measured', color=planner_colors[plan_execution])
-            axes[i].plot(df_filtered.index, df_filtered['baseline_nominal_duration'], linestyle='-.', label='Baseline', color=planner_colors[plan_execution])
-            # axes[i].plot(df_filtered.index, df_filtered['baseline_plan_duration'], linestyle='-.', label='Baseline Duration', color=planner_colors[plan_execution])
+            axes[i].plot(df_filtered.index, (abs(df_filtered['nominal_duration']-df_filtered['plan_duration']))/df_filtered['plan_duration']*100, label='Improved', color=planner_colors[plan_execution])
+            # axes[i].plot(df_filtered.index, , linestyle='--', label='Measured', color=planner_colors[plan_execution])
+            axes[i].plot(df_filtered.index, abs(df_filtered['baseline_nominal_duration']-df_filtered['baseline_plan_duration'])/df_filtered['baseline_plan_duration']*100, linestyle='-.', label='Nominal', color=planner_colors[plan_execution])
+            # axes[i].plot(df_filtered.index, , linestyle='-.', label='Baseline Duration', color=planner_colors[plan_execution])
 
-            axes[i].set_title(f'Comparison for {plan_execution}')
+            axes[i].set_title(f'Comparison Expectation VS Reality for {plan_execution}')
             axes[i].set_xlabel('Plan index')
-            axes[i].set_ylabel('Duration (s)')
-            axes[i].legend(title='Duration Type')
+            axes[i].set_ylabel('Mismatch (%)')
+            axes[i].legend(title='Method')
+            axes[i].yaxis.set_major_formatter(mtick.PercentFormatter())
+
 
         if num_plans % 2 != 0:
             # Clear the last axis
